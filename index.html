@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Sajib Sutradhar — Medical Billing and Automation</title>
+<title>Sajib Sutradhar</title>
 <meta name="description" content="Sajib Sutradhar, Executive in the billing department at DocPro Health Inc. Medical coding with CPT and ICD-10-CM, U.S. healthcare RCM operations in eClinicalWorks and MDLand, and self-built billing workflow automation. B.Sc. in Electrical and Electronic Engineering.">
 <meta name="author" content="Sajib Sutradhar">
 <meta property="og:type" content="profile">
-<meta property="og:title" content="Sajib Sutradhar — Medical Billing and Automation">
+<meta property="og:title" content="Sajib Sutradhar">
 <meta property="og:description" content="Medical coding with CPT and ICD-10-CM, RCM operations in eClinicalWorks and MDLand, and automation built for billing workflows.">
 <meta name="theme-color" content="#07111F">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -471,6 +471,7 @@ footer .cp{font-size:12.5px;color:var(--t3)}
   } else {
     mono.textContent = initials(P.name);
   }
+  if (has(P.pageTitle)) document.title = P.pageTitle;
   document.getElementById("brandName").textContent = P.name;
   document.getElementById("brandRole").textContent = P.subtitle;
   document.getElementById("eyebrow").textContent = P.eyebrow;

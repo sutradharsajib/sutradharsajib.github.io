@@ -9,6 +9,7 @@ const CV = {
   /* ---------- IDENTITY ---------- */
   person: {
     name: "Sajib Sutradhar",
+    pageTitle: "Sajib Sutradhar",   // what shows in the browser tab
     title: "Executive, Billing Department",
     org: "DocPro Health Inc.",
     subtitle: "Healthcare RCM and Automation",
