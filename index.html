@@ -10,10 +10,60 @@
 <meta property="og:title" content="Sajib Sutradhar">
 <meta property="og:description" content="Medical coding with CPT and ICD-10-CM, RCM operations in eClinicalWorks and MDLand, and automation built for billing workflows.">
 <meta name="theme-color" content="#07111F">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://sutradharsajib.github.io/">
+<meta property="og:url" content="https://sutradharsajib.github.io/">
+<meta property="og:image" content="https://sutradharsajib.github.io/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sajib Sutradhar, Executive in the billing department at DocPro Health Inc.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sajib Sutradhar">
+<meta name="twitter:description" content="Medical coding with CPT and ICD-10-CM, RCM operations in eClinicalWorks and MDLand, and automation built for billing workflows.">
+<meta name="twitter:image" content="https://sutradharsajib.github.io/og-image.jpg">
+<link rel="preload" href="fonts/jakarta-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="data.js" as="script">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sajib Sutradhar",
+  "url": "https://sutradharsajib.github.io/",
+  "image": "https://sutradharsajib.github.io/og-image.jpg",
+  "jobTitle": "Executive, Billing Department",
+  "worksFor": { "@type": "Organization", "name": "DocPro Health Inc." },
+  "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" },
+  "email": "mailto:sajibsutradhar75@gmail.com",
+  "telephone": "+8801786280937",
+  "sameAs": ["https://www.linkedin.com/in/sajib-sutradhar-0b46593a9"],
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "East West University" },
+  "knowsLanguage": [
+    { "@type": "Language", "name": "Bengali" },
+    { "@type": "Language", "name": "English" }
+  ],
+  "knowsAbout": [
+    "Medical billing", "CPT coding", "ICD-10-CM coding", "Revenue cycle management",
+    "Payment posting", "Electronic Remittance Advice", "Explanation of Benefits",
+    "eClinicalWorks", "MDLand", "Availity", "Workflow automation",
+    "Electrical and Electronic Engineering"
+  ]
+}
+</script>
 <style>
+@font-face{
+  font-family:"Plus Jakarta Sans";
+  src:url("fonts/jakarta-var.woff2") format("woff2");
+  font-weight:200 800;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"IBM Plex Mono";
+  src:url("fonts/plexmono-400.woff2") format("woff2");
+  font-weight:400;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"IBM Plex Mono";
+  src:url("fonts/plexmono-500.woff2") format("woff2");
+  font-weight:500;font-style:normal;font-display:swap;
+}
 :root{
   --bg:#07111F; --bg2:#0B1728; --card:#101F33; --card2:#14243A;
   --cyan:#35D5F2; --blue:#3898FF;
@@ -56,7 +106,16 @@ main,.nav,footer{position:relative;z-index:1}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 :focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:70;
+  background:var(--cyan);color:#05101B;font-weight:600;font-size:14px;
+  padding:11px 18px;border-radius:0 0 10px 0;
+}
+.skip:focus{left:0}
+#fallback{display:none;max-width:620px;margin:0 auto;padding:72px 28px}
+#fallback h1{font-size:34px;margin:0 0 10px}
+#fallback p{color:var(--t2);margin:0 0 16px}
+#fallback a{color:var(--cyan);text-decoration:underline}
 
 /* ---------------- scroll progress ---------------- */
 #prog{
@@ -291,8 +350,8 @@ section + section{border-top:1px solid var(--line)}
 .item p{margin:0;font-size:14px;color:var(--t2)}
 .item .sub{font-family:var(--mono);font-size:11px;color:var(--cyan);margin-bottom:7px}
 .sub-h{
-  font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--t3);margin:0 0 15px;
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--t3);margin:0 0 15px;
 }
 .block + .block{margin-top:34px}
 
@@ -347,9 +406,10 @@ footer .cp{font-size:12.5px;color:var(--t3)}
     position:fixed;top:calc(var(--nav) + env(safe-area-inset-top,0px));left:0;right:0;
     flex-direction:column;align-items:stretch;gap:2px;padding:14px 20px 20px;
     background:rgba(7,17,31,.98);border-bottom:1px solid var(--line);
-    transform:translateY(-130%);transition:transform .28s ease;
+    transform:translateY(-130%);visibility:hidden;
+    transition:transform .28s ease,visibility .28s ease;
   }
-  .navlinks.open{transform:translateY(0)}
+  .navlinks.open{transform:translateY(0);visibility:visible}
   .navlinks a{padding:12px 14px;font-size:15px}
   .burger{display:grid}
   .hero{padding:calc(var(--nav) + 48px) 0 60px}
@@ -368,6 +428,10 @@ footer .cp{font-size:12.5px;color:var(--t3)}
   .job::before{left:-24px}
   .jobcard{padding:20px}
 }
+@media (max-width:420px){
+  .views{display:none}
+  #brandRole{display:none}
+}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *{transition:none!important;animation:none!important}
@@ -385,6 +449,22 @@ footer .cp{font-size:12.5px;color:var(--t3)}
 </style>
 </head>
 <body>
+<a class="skip" href="#about">Skip to content</a>
+
+<noscript><style>#fallback{display:block}.nav,#prog,main,footer{display:none}</style></noscript>
+
+<div id="fallback">
+  <h1>Sajib Sutradhar</h1>
+  <p>Executive, Billing Department at DocPro Health Inc., Dhaka.</p>
+  <p>Medical coding with CPT and ICD-10-CM, U.S. healthcare RCM operations in
+     eClinicalWorks and MDLand, and self-built billing workflow automation.</p>
+  <p>
+    <a href="mailto:sajibsutradhar75@gmail.com">sajibsutradhar75@gmail.com</a><br>
+    <a href="tel:01786280937">01786280937</a><br>
+    <a href="https://www.linkedin.com/in/sajib-sutradhar-0b46593a9" rel="noopener">LinkedIn profile</a><br>
+    <a href="Sajib_Sutradhar_CV.pdf" download>Download CV (PDF)</a>
+  </p>
+</div>
 
 <div id="prog"></div>
 
@@ -439,6 +519,7 @@ footer .cp{font-size:12.5px;color:var(--t3)}
 <script>
 (function () {
   "use strict";
+  try {
   var P = CV.person;
 
   /* ---------- icons (inline, no external library) ---------- */
@@ -602,7 +683,7 @@ footer .cp{font-size:12.5px;color:var(--t3)}
 
   B.more = function () {
     function block(label, cards) {
-      return '<div class="block"><p class="sub-h">' + esc(label) + '</p><div class="cardgrid">' + cards + '</div></div>';
+      return '<div class="block"><h3 class="sub-h">' + esc(label) + '</h3><div class="cardgrid">' + cards + '</div></div>';
     }
     var langs = CV.languages.map(function (l) {
       return '<article class="card item" data-reveal><h4>' + esc(l.name) + '</h4><p>' + esc(l.detail) + '</p></article>';
@@ -732,6 +813,20 @@ footer .cp{font-size:12.5px;color:var(--t3)}
       })
       .catch(function () { /* service unreachable: the pill simply stays hidden */ });
   })();
+
+  } catch (err) {
+    /* Something in data.js is broken. Show the plain contact details
+       instead of a blank screen, and say so in the browser console. */
+    var fb = document.getElementById("fallback");
+    if (fb) fb.style.display = "block";
+    ["main", "footer", ".nav", "#prog"].forEach(function (sel) {
+      var n = document.querySelector(sel);
+      if (n) n.style.display = "none";
+    });
+    if (window.console && console.error) {
+      console.error("Portfolio could not render. Check data.js for a typo.", err);
+    }
+  }
 })();
 </script>
 </body>
