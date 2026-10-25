@@ -35,6 +35,16 @@ const CV = {
     ]
   },
 
+  /* ---------- VIEW COUNTER ----------
+     Counts each device once, not each visit.
+     enabled: false turns it off completely.                  */
+  views: {
+    enabled: true,
+    namespace: "sutradharsajib-github-io",
+    key: "portfolio-views",
+    label: "views"
+  },
+
   /* ---------- 01 SUMMARY ---------- */
   summary: [
     "Motivated Electrical and Electronic Engineering graduate with experience in engineering projects, U.S. healthcare revenue cycle management, medical billing and workflow automation.",

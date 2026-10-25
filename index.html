@@ -85,6 +85,16 @@ img{max-width:100%;display:block}
 .mono-badge img{width:100%;height:100%;object-fit:cover;display:block}
 .brand b{font-size:15.5px;font-weight:700}
 .brand span{display:block;font-size:11.5px;font-weight:500;color:var(--t3);letter-spacing:.02em}
+.navend{display:flex;align-items:center;gap:12px}
+.views{
+  display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+  font-family:var(--mono);font-size:11.5px;color:var(--t3);
+  border:1px solid var(--line);border-radius:999px;padding:5px 11px;
+  background:rgba(141,172,204,.05);
+}
+.views[hidden]{display:none}
+.views svg{width:13px;height:13px;color:var(--cyan);flex:none}
+.views b{font-weight:500;color:var(--t1)}
 .navlinks{display:flex;align-items:center;gap:4px}
 .navlinks a{
   font-size:14px;font-weight:500;color:var(--t2);padding:8px 13px;border-radius:8px;
@@ -384,10 +394,13 @@ footer .cp{font-size:12.5px;color:var(--t3)}
       <span class="mono-badge" id="mono"></span>
       <span><b id="brandName"></b><span id="brandRole"></span></span>
     </a>
-    <button class="burger" id="burger" aria-expanded="false" aria-controls="navlinks" aria-label="Open the menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="19" height="19"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-    </button>
-    <nav class="navlinks" id="navlinks" aria-label="Sections"></nav>
+    <div class="navend">
+      <span class="views" id="views" hidden></span>
+      <nav class="navlinks" id="navlinks" aria-label="Sections"></nav>
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="navlinks" aria-label="Open the menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="19" height="19"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -446,6 +459,7 @@ footer .cp{font-size:12.5px;color:var(--t3)}
     pin:'<path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/>',
     download:'<path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/>',
     arrow:'<path d="M12 4v15"/><path d="m5.5 13 6.5 6.5L18.5 13"/>',
+    eye:'<path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.7"/>',
     close:'<path d="M6 6l12 12M18 6 6 18"/>'
   };
   function svg(key) {
@@ -695,6 +709,29 @@ footer .cp{font-size:12.5px;color:var(--t3)}
   burger.addEventListener("click", function () { setMenu(!panel.classList.contains("open")); });
   panel.addEventListener("click", function (e) { if (e.target.tagName === "A") setMenu(false); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") setMenu(false); });
+
+  /* ---------- view counter: one device counts once ---------- */
+  (function () {
+    var V = CV.views, box = document.getElementById("views");
+    if (!V || !V.enabled || !box) return;
+    if (typeof fetch !== "function") return;   // very old browser: skip quietly
+    var seen = false;
+    try { seen = localStorage.getItem("sajib-viewed") === "1"; } catch (e) {}
+    var url = "https://abacus.jasoncameron.dev/" + (seen ? "get" : "hit") +
+              "/" + encodeURIComponent(V.namespace) + "/" + encodeURIComponent(V.key);
+    fetch(url)
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (!j) return;
+        var n = typeof j.value === "number" ? j.value
+              : typeof j.count === "number" ? j.count : null;
+        if (n === null) return;
+        if (!seen) { try { localStorage.setItem("sajib-viewed", "1"); } catch (e) {} }
+        box.innerHTML = svg("eye") + "<b>" + n.toLocaleString() + "</b> " + esc(V.label || "views");
+        box.hidden = false;
+      })
+      .catch(function () { /* service unreachable: the pill simply stays hidden */ });
+  })();
 })();
 </script>
 </body>
